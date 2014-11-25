@@ -1,0 +1,14 @@
+Package: PROPER
+Type: Package
+Title: PROspective Power Evaluation for RNAseq
+Version: 0.99.1
+Imports: edgeR
+Suggests: BiocStyle,DESeq,DSS
+Date: 2014-11-19
+Author: Hao Wu
+Maintainer: Hao Wu <hao.wu@emory.edu>
+Description: This package provide simulation based methods for
+        evaluating the statistical power in differential expression
+        analysis from RNA-seq data.
+License: GPL
+biocViews: Sequencing, RNASeq, DifferentialExpression

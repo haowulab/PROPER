@@ -1,0 +1,7 @@
+Changes on Jan 21, 2014:
+
+- modify the default distributions of log fold-change for null and alternative distributions. 
+
+- Given a random seed, gaurantee the data generated are exactly the same under the same options.
+
+- added comparePower function, with misc plotting functions. 

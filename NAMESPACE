@@ -1,0 +1,24 @@
+import(edgeR)
+#importClassesFrom(edgeR,DGEList)
+#importFrom(edgeR,calcNormFactors,estimateCommonDisp,estimateTagwiseDisp,exactTest,topTags)
+#importClassesFrom(DESeq,newCountDataSet)
+#importFrom(DESeq,estimateSizeFactors,estimateDispersions,nbinomTest)
+#importClassesFrom(DSS,newSeqCountSet)
+#importFrom(DSS,estNormFactors,estDispersion,waldTest)
+
+export(
+	RNAseq.SimOptions.2grp,
+	simRNAseq,
+	runSims,
+	comparePower,
+	summaryPower,
+	power.seqDepth,
+	plotPower,
+	plotPowerTD,
+	plotPowerFD,
+	plotFDR,
+	plotFDcost,
+	plotPowerAlpha,
+	plotPowerHist,
+	plotAll
+)

@@ -1,0 +1,11 @@
+citEntry(entry="article",
+         title = "PROPER: Comprehensive Power Evaluation for Differential Expression using RNA-seq",
+         author = personList( as.person("Hao Wu"), as.person("Chi Wang"), as.person("Zhijin Wu")),
+         year = 2014,
+         journal = "Bioinformatics",
+         doi = "10.1093/bioinformatics/btu640",
+         textVersion =
+         paste("Hao Wu, Chi Wang, Zhijin Wu (2014):",
+               "PROPER: Comprehensive Power Evaluation for Differential Expression using RNA-seq.",
+                "Bioinformatics. doi:10.1093/bioinformatics/btu640" ) )
+
