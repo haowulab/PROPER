@@ -10,7 +10,8 @@ setBaselineExpr <- function(input, ngenes) {
         if(length(input)==1 & is.numeric(input)) { ## constant
             lmeanExpr=rep(input, ngenes)
         } else if (length(input)!=ngenes) { ## vector
-            stop("The length of lmeanExpr doesn't equal to ngenes!\n")
+#            stop("The length of lmeanExpr doesn't equal to ngenes!\n")
+          lmeanExpr=sample(input, ngenes, replace=TRUE)
         } else
         lmeanExpr = input
     } else if (is.function(input)) { # a function
@@ -53,7 +54,8 @@ setOD <- function(input, ngenes) {
         if(length(input)==1) { ## constant
             lOD=rep(input, ngenes)
         } else if (length(input)!=ngenes) { ## vector
-            stop("The length of OD doesn't equal to ngenes!\n")
+            #stop("The length of OD doesn't equal to ngenes!\n")
+		lOD=sample(input, ngenes, replace=TRUE)
         } else
         lOD = input
     } else if (is.function(input)) { # a function

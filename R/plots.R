@@ -293,12 +293,13 @@ table2hist<-function(x,add=FALSE,axes=FALSE,...){
 ## make all power plots in one figures
 ##########################################
 plotAll <- function(powerOutput){
-    plotPower(powerOutput)
-    plotPowerTD(powerOutput)
-    plotPowerFD(powerOutput)
-    plotFDcost(powerOutput)
-    plotFDR(powerOutput)
-    plotPowerAlpha(powerOutput)
+  par(mfrow=c(3,2),mai=c(.67,.5,.2,.1),mgp=c(0,.5,0))
+    plotPower(powerOutput,main="");mtext("A",side=3,at=0)
+    plotPowerTD(powerOutput);mtext("B",side=3,at=0)
+    plotPowerFD(powerOutput);mtext("C",side=3,at=0)
+    plotFDcost(powerOutput);mtext("D",side=3,at=0)
+    plotFDR(powerOutput);mtext("E",side=3,at=0)
+    plotPowerAlpha(powerOutput);mtext("F",side=3,at=0)
 }
 
 

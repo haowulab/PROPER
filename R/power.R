@@ -196,7 +196,8 @@ summaryPower <- function(powerOutput) {
     res[,5] <- TD.avg
     res[,6] <- FD.avg
     res[,7] <- FD.avg/TD.avg
-    res
+    print(signif(res,2))
+    return(invisible(res))
 
 }
 
@@ -246,6 +247,7 @@ power.seqDepth <- function(simResult, powerOutput,
     }
 
     colnames(res) = paste(powerOutput$Nreps, "reps")
-    res
+    print(signif(res,2))
+    return(invisible(res))  
 }
 
