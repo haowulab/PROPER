@@ -20,5 +20,6 @@ export(
 	plotFDcost,
 	plotPowerAlpha,
 	plotPowerHist,
-	plotAll
+	plotAll,
+	estParam
 )
