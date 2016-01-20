@@ -52,8 +52,10 @@ plotPower <- function(powerOutput, cols=1:ncol(powerOutput$FD),
     mtext(xlab, side=1, line=4)
     mtext(ylab, side=2, line=2.5)
 
-    if(leg)
-        legend("bottomright",legend=paste("n =",powerOutput$Nreps),col=c(cols),lty=c(lty), lwd=2)
+    if(leg) {
+        ll = paste0("SS = ", powerOutput$Nreps1, ", ", powerOutput$Nreps2)
+        legend("bottomright",ll, col=cols,lty=lty, lwd=2)
+    }
     grid()
     add.axis1(power, strata)
     axis(2);  box()
@@ -92,8 +94,10 @@ plotPowerTD <- function(powerOutput,cols=1:ncol(powerOutput$TD),
     add.axis1(TD, strata)
     axis(2);  box()
     grid()
-    if(leg)
-        legend("topright", legend=paste("n =",powerOutput$Nreps), lwd=2, col=cols,lty=lty)
+    if(leg) {
+        ll = paste0("SS = ", powerOutput$Nreps1, ", ", powerOutput$Nreps2)
+        legend("topright",ll, col=c(cols),lty=lty, lwd=2)
+    }
 }
 
 #####################################
@@ -128,8 +132,10 @@ plotPowerFD <- function(powerOutput,cols=1:ncol(powerOutput$FD),
     mtext(ylab, side=2, line=2.5)
     add.axis1(FD, strata);
     axis(2);  box(); grid()
-    if(leg)
-        legend("topright", legend=paste("n =",powerOutput$Nreps), lwd=2, col=cols,lty=lty)
+    if(leg) {
+        ll = paste0("SS = ", powerOutput$Nreps1, ", ", powerOutput$Nreps2)
+        legend("topright",ll, col=cols, lty=lty, lwd=2)
+    }
 }
 
 
@@ -159,8 +165,10 @@ plotFDR <- function(powerOutput,cols=1:ncol(powerOutput$FDR),
 
     add.axis1(fdr, strata)
     axis(2);  box();  grid()
-    if(leg)
-        legend("topright", legend=paste("n =",powerOutput$Nreps), lwd=2, col=cols,lty=lty)
+    if(leg) {
+        ll = paste0("SS = ", powerOutput$Nreps1, ", ", powerOutput$Nreps2)
+        legend("topright",ll, col=cols, lty=lty, lwd=2)
+    }
 }
 
 
@@ -204,8 +212,10 @@ plotFDcost <- function(powerOutput,cols=1:ncol(powerOutput$FD),
     add.axis1(FDC, strata);
     axis(2);  box();  grid()
 
-    if(leg)
-        legend("topright", legend=paste("n =",powerOutput$Nreps), lwd=2, col=cols,lty=lty)
+    if(leg) {
+        ll = paste0("SS = ", powerOutput$Nreps1, ", ", powerOutput$Nreps2)
+        legend("topright",ll, col=cols, lty=lty, lwd=2)
+    }
 
 }
 
@@ -242,8 +252,10 @@ plotPowerAlpha <- function(powerOutput,cols=1:ncol(powerOutput$alpha),
     box(); grid()
     abline(h=powerOutput$powerlist$alpha.nominal)
 
-    if(leg)
-        legend("topright", legend=paste("n =",powerOutput$Nreps), lwd=2, col=cols,lty=lty)
+    if(leg) {
+        ll = paste0("SS = ", powerOutput$Nreps1, ", ", powerOutput$Nreps2)
+        legend("topright",ll, col=cols, lty=lty, lwd=2)
+    }
 }
 
 ##########################################
@@ -253,23 +265,23 @@ plotPowerHist <- function(powerOutput, simResult, main="Histogram of power", ret
     Xcut = powerOutput$strata
     strata = levels(cut(0,Xcut))
     nsims = dim(powerOutput$TD)[3]
-    N = length(powerOutput$Nreps)
-    table1=table2=matrix(NA,length(strata),nsims)
+    N = length(powerOutput$Nreps1)
+    table1 = table2 = matrix(NA,length(strata),nsims)
     for(i in 1:nsims){
-        id= simResult$DEid[[i]]
-        table1[,i]=as.vector(table(cut(simResult$xbar[,N,i],Xcut)))
-        table2[,i]=as.vector(table(cut(simResult$xbar[id,N,i],Xcut)))
+        id = simResult$DEid[[i]]
+        table1[,i] = as.vector(table(cut(simResult$xbar[,N,i],Xcut)))
+        table2[,i] = as.vector(table(cut(simResult$xbar[id,N,i],Xcut)))
     }
-    table1=rowMeans(table1)
-    table2=rowMeans(table2)
+    table1 = rowMeans(table1)
+    table2 = rowMeans(table2)
     table2hist(table1,axes=FALSE, ylab="Counts", main=main)
     table2hist(table2,axes=FALSE, add=TRUE,col="blue")
     add.axis1(c(0,max(table1)), strata);
     axis(2)
 
     if(return){
-        tmp=rbind(table1,table2)
-        colnames(tmp)=strata
+        tmp = rbind(table1,table2)
+        colnames(tmp) = strata
         rownames(tmp) = c("Number of genes", "Number of true DE genes")
         return(tmp)
     }

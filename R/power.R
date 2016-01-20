@@ -22,7 +22,8 @@ comparePower <- function(simOutput, alpha.type=c("fdr","pval"), alpha.nominal=0.
     }
 
     ## some general parameters
-    Nreps = simOutput$Nreps
+    Nreps1 = simOutput$Nreps1
+    Nreps2 = simOutput$Nreps2
     ngenes = simOutput$sim.opts$ngenes
     sim.opts = simOutput$sim.opts
     DEids = simOutput$DEid
@@ -35,13 +36,14 @@ comparePower <- function(simOutput, alpha.type=c("fdr","pval"), alpha.nominal=0.
     if(filter.by == "expr") {
         nr = nr - length(strata.filtered)
     }
-    TD = FD = FDR = alpha = power = array(NA,dim=c(nr,length(Nreps), nsims))
-    power.marginal = alpha.marginal = FDR.marginal = matrix(NA,length(Nreps), nsims)
+    TD = FD = FDR = alpha = power = array(NA,dim=c(nr,length(Nreps1), nsims))
+    power.marginal = alpha.marginal = FDR.marginal = matrix(NA,length(Nreps1), nsims)
 
     ## loop over simulation and replicates
     for(i in 1:nsims) {
-        for(j in seq(along=Nreps)) {
-            Nrep = Nreps[j]
+        for(j in seq(along=Nreps1)) {
+            nn1 = Nreps1[j]
+            nn2 = Nreps2[j]
             ## get DE flags.
             DEid = simOutput$DEid[[i]]
             lfc = simOutput$lfcs[[i]]
@@ -110,7 +112,8 @@ comparePower <- function(simOutput, alpha.type=c("fdr","pval"), alpha.nominal=0.
                    ## below are input parameters
                    alpha.type=alpha.type, alpha.nominal=alpha.nominal,
                    stratify.by=stratify.by, strata=strata,
-                   target.by=target.by, Nreps=simOutput$Nreps, delta=delta)
+                   target.by=target.by, Nreps1=simOutput$Nreps1, Nreps2=simOutput$Nreps2,
+                   delta=delta)
 
     output
 }
@@ -172,7 +175,9 @@ POWER1 <- function(p, p.crit, Zg, Zg2, xgr){
 ## The result is an object from comparePower function.
 ###########################################################################
 summaryPower <- function(powerOutput) {
-    nreps <- powerOutput$Nreps
+    nn1 <- powerOutput$Nreps1
+    nn2 <- powerOutput$Nreps2
+
     alpha.type <- powerOutput$alpha.type
     if(alpha.type == "pval") {
         alpha.nam <- "type I error"
@@ -182,20 +187,14 @@ summaryPower <- function(powerOutput) {
         alpha.mar <- rowMeans(powerOutput$FDR.marginal)
     }
 
-    res <- matrix(0, nrow=length(nreps), ncol=7)
-    colnames(res) <- c("Sample size",  paste(c("Nominal", "Actual"), alpha.nam),
-                       "Marginal power", "Avg # of TD", "Avg # of FD", "FDC")
-
     TD.avg <- colSums(apply(powerOutput$TD,c(1,2), mean, na.rm=TRUE))
     FD.avg <- colSums(apply(powerOutput$FD,c(1,2), mean, na.rm=TRUE))
 
-    res[,1] <- nreps
-    res[,2] <- powerOutput$alpha.nominal
-    res[,3] <- alpha.mar
-    res[,4] <- rowMeans(powerOutput$power.marginal)
-    res[,5] <- TD.avg
-    res[,6] <- FD.avg
-    res[,7] <- FD.avg/TD.avg
+    res <- cbind(nn1, nn2, powerOutput$alpha.nominal, alpha.mar, rowMeans(powerOutput$power.marginal),
+                 TD.avg, FD.avg, FD.avg/TD.avg)
+    colnames(res) <- c("SS1", "SS2",  paste(c("Nominal", "Actual"), alpha.nam),
+                       "Marginal power", "Avg # of TD", "Avg # of FD", "FDC")
+
     print(signif(res,2))
     return(invisible(res))
 
@@ -246,8 +245,8 @@ power.seqDepth <- function(simResult, powerOutput,
         res[idepth, ] = colMeans(power.adj)
     }
 
-    colnames(res) = paste(powerOutput$Nreps, "reps")
+    colnames(res) = paste0("SS=", powerOutput$Nreps1, ",", powerOutput$Nreps2)
     print(signif(res,2))
-    return(invisible(res))  
+    return(invisible(res))
 }
 

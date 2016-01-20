@@ -56,17 +56,24 @@ makeMeanExpr.2grp <- function(lBaselineExpr, lfc, n1, n2) {
 ###############################################################
 ## run simulation and DE detection
 ###############################################################
-runSims <- function(Nreps=c(3,5,7,10), nsims=100, sim.opts, DEmethod=c("edgeR", "DSS", "DESeq"), verbose=TRUE) {
+runSims <- function(Nreps=c(3,5,7,10), Nreps2, nsims=100, sim.opts, DEmethod=c("edgeR", "DSS", "DESeq"), verbose=TRUE) {
 
   DEmethod = match.arg(DEmethod)
-  n1 = n2 = max(Nreps)
-
   ## generate size factor if not given
 ##   if(missing(sizefactor)) {
 ##     sizefactor=rep(1, n1+n2)
 ##   } else if(!is.vector(sizefactor) | length(sizefactor) != (m.n1+m.n2) ) {
 ##     stop("sizefactor must be a vector of length n1+n2!\n")
 ##   }
+
+  if(missing(Nreps2))
+      Nreps2 = Nreps
+  else {
+      if(length(Nreps2) != length(Nreps))
+          stop("Nreps and Nreps2 must be vectors of the same length")
+  }
+  n1 = max(Nreps)
+  n2 = max(Nreps2)
 
   ## start simulation
   set.seed(sim.opts$sim.seed)
@@ -88,9 +95,11 @@ runSims <- function(Nreps=c(3,5,7,10), nsims=100, sim.opts, DEmethod=c("edgeR", 
 
     ##  for different sample sizes
     for(j in seq(along=Nreps)) {
-      Nrep = Nreps[j]
+      nn1 = Nreps[j]
+      nn2 = Nreps2[j]
+
       ## take a subsample of the simulated counts
-      idx = c(1:Nrep, max(Nreps)+(1:Nrep))
+      idx = c(1:nn1, n1+(1:nn2))
       this.design = dat.sim.big$designs[idx]
       this.X = dat.sim.big$counts[,idx]
       this.simOpts = sim.opts
@@ -122,7 +131,7 @@ runSims <- function(Nreps=c(3,5,7,10), nsims=100, sim.opts, DEmethod=c("edgeR", 
   }
 
   ## return
-  list(pvalue=pvalue, fdrs=fdrs, xbar=xbar, DEid=DEids, lfcs=lfcs, Nreps=Nreps,sim.opts=sim.opts)
+  list(pvalue=pvalue, fdrs=fdrs, xbar=xbar, DEid=DEids, lfcs=lfcs, Nreps1=Nreps, Nreps2=Nreps2, sim.opts=sim.opts)
 }
 
 
