@@ -15,7 +15,7 @@
 }
 
 \usage{
-runSims(Nreps = c(3, 5, 7, 10), nsims = 100, sim.opts,
+runSims(Nreps = c(3, 5, 7, 10), Nreps2, nsims = 100, sim.opts,
         DEmethod = c("edgeR", "DSS", "DESeq"), verbose =TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
