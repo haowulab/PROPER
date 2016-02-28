@@ -1,16 +1,16 @@
 %\VignetteIndexEntry{Power and Sample size analysis for gene expression from RNA-seq}
 %\VignettePackage{BiocStyle}
-%\VignetteEngine{utils::Sweave}
+%\VignetteEngine{knitr::knitr}
 
 \documentclass{article}
-<<style, eval=TRUE, echo=FALSE, results=tex>>=
+<<style, eval=TRUE, echo=FALSE, results='asis'>>=
     BiocStyle::latex(use.unsrturl=FALSE)
 @
 
 \newcommand{\exitem}[3]
 {\item \texttt{\textbackslash#1\{#2\}} #3 \csname#1\endcsname{#2}.}
 
-\usepackage{Sweave}
+
 \renewcommand{\baselinestretch}{1.3}
 
 \author{Hao Wu \\[1em]Department of Biostatistics and Bioinformatics\\ Emory University\\
@@ -261,7 +261,7 @@ canonically desired level of 0.8 for genes with reasonably large counts.
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=3in]{powers.pdf}
+\includegraphics[width=2.7in]{powers.pdf}
 \caption{Stratified target power}
 \end{figure}
 
@@ -274,7 +274,7 @@ The numbers of true discoveries from each stratum are plotted.
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=3in]{TD.pdf}
+\includegraphics[width=2.7in]{TD.pdf}
 \caption{Stratified number of true discoveries}
 \end{figure}
 
@@ -285,7 +285,7 @@ The numbers of true discoveries from each stratum are plotted.
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=3in]{FDC.pdf}
+\includegraphics[width=2.7in]{FDC.pdf}
 \caption{Stratified false discovery cost}
 \end{figure}
 
