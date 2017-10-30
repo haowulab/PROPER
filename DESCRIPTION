@@ -1,7 +1,7 @@
 Package: PROPER
 Type: Package
 Title: PROspective Power Evaluation for RNAseq
-Version: 1.10.0
+Version: 1.11.0
 Imports: edgeR
 Depends: R (>= 2.10)
 Suggests: BiocStyle,DESeq,DSS,knitr
