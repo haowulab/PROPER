@@ -56,7 +56,8 @@ makeMeanExpr.2grp <- function(lBaselineExpr, lfc, n1, n2) {
 ###############################################################
 ## run simulation and DE detection
 ###############################################################
-runSims <- function(Nreps=c(3,5,7,10), Nreps2, nsims=100, sim.opts, DEmethod=c("edgeR", "DSS", "DESeq"), verbose=TRUE) {
+runSims <- function(Nreps=c(3,5,7,10), Nreps2, nsims=100, sim.opts,
+                    DEmethod=c("edgeR", "DSS", "DESeq", "DESeq2"), verbose=TRUE) {
 
   DEmethod = match.arg(DEmethod)
   ## generate size factor if not given
@@ -116,6 +117,8 @@ runSims <- function(Nreps=c(3,5,7,10), Nreps2, nsims=100, sim.opts, DEmethod=c("
         res1=run.DESeq(data0)
       if (DEmethod=="DSS")
         res1=run.DSS(data0)
+      if (DEmethod=="DESeq2")
+          res1=run.DESeq2(data0)
 
       ## store results. Be careful here about filtering
       pval = fdr = rep(1, nrow(this.X))

@@ -3,9 +3,9 @@ Type: Package
 Title: PROspective Power Evaluation for RNAseq
 Version: 1.13.0
 Imports: edgeR
-Depends: R (>= 2.10)
+Depends: R (>= 3.3)
 Suggests: BiocStyle,DESeq,DSS,knitr
-Date: 2016-1-20
+Date: 2018-7-7
 Author: Hao Wu
 Maintainer: Hao Wu <hao.wu@emory.edu>
 Description: This package provide simulation based methods for

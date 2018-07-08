@@ -1,4 +1,4 @@
-import(edgeR)
+#import(edgeR)
 #importClassesFrom(edgeR,DGEList)
 #importFrom(edgeR,calcNormFactors,estimateCommonDisp,estimateTagwiseDisp,exactTest,topTags)
 #importClassesFrom(DESeq,newCountDataSet)
