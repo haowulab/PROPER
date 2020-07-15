@@ -94,14 +94,11 @@ setFC <- function(input, nDEgenes) {
     if(is.vector(input)) { ## vector
         if(length(input)==1) { ## constant
             lfc = rep(input, nDEgenes)
-        } else if (length(input)!=nDEgenes) { ## vector
-            ## warning("The length of lfc doesn't equal to number of DE genes. I'll sample from it. \n")
+        } else {  ## a vector of lfc. Resample it
             lfc = sample(input, nDEgenes, replace=TRUE)
-        } else {
-            lfc = input
         }
     } else if (is.function(input)) { # a function
-        lfc=input(nDEgenes)
+        lfc = input(nDEgenes)
     }   else {
         stop("Unrecognized form of lfc!\n")
     }

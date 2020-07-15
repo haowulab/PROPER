@@ -157,6 +157,7 @@ POWER1 <- function(p, p.crit, Zg, Zg2, xgr){
 
     ## power
     power=as.vector(TD/table(xgr[id.TP]))
+    power[is.nan(power)] = 0
     power.marginal=sum(TD,na.rm=TRUE)/sum(id.TP)
 
     ## FDR
