@@ -1,7 +1,7 @@
 Package: PROPER
 Type: Package
 Title: PROspective Power Evaluation for RNAseq
-Version: 1.13.0
+Version: 1.21.0
 Imports: edgeR
 Depends: R (>= 3.3)
 Suggests: BiocStyle,DESeq,DSS,knitr
@@ -12,5 +12,5 @@ Description: This package provide simulation based methods for
         evaluating the statistical power in differential expression
         analysis from RNA-seq data.
 License: GPL
-biocViews: Sequencing, RNASeq, DifferentialExpression
+biocViews: ImmunoOncology, Sequencing, RNASeq, DifferentialExpression
 VignetteBuilder: knitr
