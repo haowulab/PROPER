@@ -16,7 +16,7 @@
 
 \usage{
 runSims(Nreps = c(3, 5, 7, 10), Nreps2, nsims = 100, sim.opts,
-        DEmethod = c("edgeR", "DSS", "DESeq", "DESeq2"), verbose =TRUE)
+        DEmethod = c("edgeR", "DSS", "DESeq2"), verbose =TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -34,7 +34,7 @@ runSims(Nreps = c(3, 5, 7, 10), Nreps2, nsims = 100, sim.opts,
   \item{sim.opts}{An object for simulation option. This should be the
     return object from "RNAseq.SimOptions.2grp" function.}
   \item{DEmethod}{String to specify the DE detection method to be
-    used. Available options are "edgeR", "DSS", "DESeq", and "DESeq2". }
+    used. Available options are "edgeR", "DSS", and "DESeq2". }
   \item{verbose}{Logical value to indicate whether to output some
     messages (progress report).}
 }

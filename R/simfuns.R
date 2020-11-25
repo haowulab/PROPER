@@ -57,7 +57,7 @@ makeMeanExpr.2grp <- function(lBaselineExpr, lfc, n1, n2) {
 ## run simulation and DE detection
 ###############################################################
 runSims <- function(Nreps=c(3,5,7,10), Nreps2, nsims=100, sim.opts,
-                    DEmethod=c("edgeR", "DSS", "DESeq", "DESeq2"),
+                    DEmethod=c("edgeR", "DSS", "DESeq2"),
                     verbose=TRUE) {
 
     DEmethod = match.arg(DEmethod)
@@ -114,8 +114,8 @@ runSims <- function(Nreps=c(3,5,7,10), Nreps2, nsims=100, sim.opts,
             data0=list(counts=this.X.valid, designs=this.design)
             if (DEmethod == "edgeR")
                 res1 = run.edgeR(data0)
-            if (DEmethod == "DESeq")
-                res1=run.DESeq(data0)
+            ## if (DEmethod == "DESeq")
+            ##     res1=run.DESeq(data0)
             if (DEmethod == "DSS")
                 res1=run.DSS(data0)
             if (DEmethod == "DESeq2")

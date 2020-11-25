@@ -4,7 +4,7 @@ Title: PROspective Power Evaluation for RNAseq
 Version: 1.21.0
 Imports: edgeR
 Depends: R (>= 3.3)
-Suggests: BiocStyle,DESeq,DSS,knitr
+Suggests: BiocStyle,DESeq2,DSS,knitr
 Date: 2020-7-17
 Author: Hao Wu
 Maintainer: Hao Wu <hao.wu@emory.edu>

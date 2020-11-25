@@ -45,27 +45,27 @@ run.edgeR <- function(dat) {
     res
 }
 
-######################################
-## get pvalues from DEseq
-######################################
-run.DESeq <- function(dat) {
-    require(DESeq)
+## ######################################
+## ## get pvalues from DEseq
+## ######################################
+## run.DESeq <- function(dat) {
+##     require(DESeq)
 
-    ## run DESeq
-    cds <- newCountDataSet(dat$counts, dat$designs)
-    cds <- estimateSizeFactors( cds )
-    cds <- estimateDispersions(cds) ##, fitType="local")
-    fit.DEseq <- nbinomTest( cds, "0","1")
-    pval <- fit.DEseq$pval
-    pval[is.na(pval)] <- 1
-    fdr <- fit.DEseq$padj
+##     ## run DESeq
+##     cds <- newCountDataSet(dat$counts, dat$designs)
+##     cds <- estimateSizeFactors( cds )
+##     cds <- estimateDispersions(cds) ##, fitType="local")
+##     fit.DEseq <- nbinomTest( cds, "0","1")
+##     pval <- fit.DEseq$pval
+##     pval[is.na(pval)] <- 1
+##     fdr <- fit.DEseq$padj
 
-    ## construct results, ordered by the orignal order of genes
-    ix <- sort(pval, index.return=TRUE)$ix
-    result <- data.frame(geneIndex=ix, pval=pval[ix], fdr=fdr[ix])
-    res <- result[order(result$geneIndex),]
-    res
-}
+##     ## construct results, ordered by the orignal order of genes
+##     ix <- sort(pval, index.return=TRUE)$ix
+##     result <- data.frame(geneIndex=ix, pval=pval[ix], fdr=fdr[ix])
+##     res <- result[order(result$geneIndex),]
+##     res
+## }
 
 
 ######################################
