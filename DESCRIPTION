@@ -5,7 +5,7 @@ Version: 1.23.0
 Imports: edgeR
 Depends: R (>= 3.3)
 Suggests: BiocStyle,DESeq2,DSS,knitr
-Date: 2020-7-17
+Date: 2020-11-25
 Author: Hao Wu
 Maintainer: Hao Wu <hao.wu@emory.edu>
 Description: This package provide simulation based methods for
